@@ -1,0 +1,7 @@
+modifiers:
+  - source: /deployments/apps/grafana.deploy.yml
+    target: /deployments/grafana.deploy.yml
+  - source: /deployments/apps/node-exporter.deploy.yml
+    target: /deployments/node-exporter.deploy.yml
+  - source: /deployments/infra/prometheus.deploy.yml
+    target: /deployments/prometheus.deploy.yml

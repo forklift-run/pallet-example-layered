@@ -1,0 +1,6 @@
+modifiers:
+  - type: add
+    target: /deployments
+  - type: remove
+    only-matching-any:
+      - /deployments/caddy-ingress.deploy.yml

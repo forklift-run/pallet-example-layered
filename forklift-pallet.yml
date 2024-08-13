@@ -1,0 +1,6 @@
+forklift-version: v0.8.0-alpha.1
+
+pallet:
+  path: github.com/forklift-run/pallet-example-layered
+  description: Example deployment of example hello-world packages for a minimal demo of Forklift pallet layering
+  readme-file: README.md

@@ -1,0 +1,4 @@
+package: /packages/simple-demo
+features:
+  - hello
+disabled: false

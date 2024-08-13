@@ -1,0 +1,4 @@
+modifiers:
+  - target: /packages
+    only-matching-any:
+      - hello-*
