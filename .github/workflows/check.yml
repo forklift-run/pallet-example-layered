@@ -29,6 +29,11 @@ jobs:
         with:
           version: ${{ matrix.forklift-version }}
 
+      - name: Cache Forklift pallet requirements
+        run: |
+          forklift dev plt cache-plt
+          forklift dev plt cache-repo
+
       - name: Run Forklift checks
         run: forklift dev plt check
 
