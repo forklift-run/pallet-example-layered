@@ -39,3 +39,6 @@ jobs:
 
       - name: Make Forklift deployment plan
         run: forklift dev plt plan
+
+      - name: Try to stage the pallet
+        run: forklift dev plt stage
