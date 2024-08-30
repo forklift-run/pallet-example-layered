@@ -5,7 +5,7 @@ A simple "hello-world" Forklift pallet illustrating layering of pallets
 
 pallet-example-layered is a [Forklift](https://github.com/PlanktoScope/forklift) pallet defined as
 an override layer over
-[github.com/forklift-run/pallet-example-minimal](https://github.com/forklift-run/pallet-example-layered).
+[github.com/forklift-run/pallet-example-minimal](https://github.com/forklift-run/pallet-example-minimal).
 For maintainability reasons, layering is the recommended approach (instead of forking a pallet as a
 Git repository) for minor customizations of existing pallets.
 
@@ -59,9 +59,6 @@ This pallet will bring up a web server at port 80.
   should see a Grafana dashboard with system monitoring information about your computer - this is
   because this pallet imports the package deployment for Grafana from
   github.com/Planktoscope/pallet-standard.
-- If you open <http://localhost/admin/dozzle/>, you should see a Dozzle dashboard with a list of
-  containers running on your computer - this is because this pallet imports the package deployment
-  for Grafana from github.com/Planktoscope/pallet-standard.
 
 ### Forking
 

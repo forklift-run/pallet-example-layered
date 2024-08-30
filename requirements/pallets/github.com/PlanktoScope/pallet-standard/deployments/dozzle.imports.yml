@@ -1,3 +1,0 @@
-modifiers:
-  - source: /deployments/apps/dozzle.deploy.yml
-    target: /deployments/dozzle.deploy.yml
