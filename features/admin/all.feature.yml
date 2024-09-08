@@ -1,0 +1,4 @@
+description: All features for system administration interfaces
+modifiers:
+  - type: add-feature
+    source: admin/metrics

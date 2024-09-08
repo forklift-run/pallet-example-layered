@@ -1,0 +1,8 @@
+description: Interfaces for monitoring system metrics
+modifiers:
+  - type: add-feature
+    source: base/http
+  - type: add-feature
+    source: base/metrics
+  - target: /deployments/node-exporter.deploy.yml
+  - target: /deployments/grafana.deploy.yml

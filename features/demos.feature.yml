@@ -1,0 +1,8 @@
+description: Demo package deployments
+modifiers:
+  - target: /packages/hello-hostname
+  - target: /deployments/hello-hostname.deploy.yml
+  - target: /packages/hello-service
+  - target: /deployments/hello-service.deploy.yml
+  - target: /packages/simple-demo
+  - target: /deployments/simple-demo.deploy.yml

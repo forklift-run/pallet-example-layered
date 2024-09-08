@@ -1,0 +1,12 @@
+description: All PlanktoScope-specific apps
+modifiers:
+  - type: add-feature
+    source: requirements
+  - type: add-feature
+    source: admin/all
+  - type: add-feature
+    source: base/all
+  - type: add-feature
+    source: demos
+  - type: add-feature
+    source: feature-flags

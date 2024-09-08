@@ -1,0 +1,5 @@
+description: Support for collection of metrics via Prometheus-compatible HTTP endpoints
+modifiers:
+  - type: add-feature
+    source: base/http
+  - target: /deployments/prometheus.deploy.yml
