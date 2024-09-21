@@ -1,0 +1,14 @@
+services:
+  hello:
+    image: crccheck/hello-world:v1.0.0
+    networks:
+      - caddy-ingress
+    labels:
+      caddy: :80
+      caddy.redir: /hello /hello/
+      caddy.handle_path: /hello/*
+      caddy.handle_path.reverse_proxy: "{{upstreams 8000}}"
+
+networks:
+  caddy-ingress:
+    external: true

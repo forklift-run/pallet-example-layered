@@ -26,7 +26,7 @@ that currently `forklift` is only tested for Linux computers.
 You can clone the latest commit of this Forklift pallet to your computer, by
 using the `forklift` tool:
 ```
-forklift plt clone github.com/ethanjli/pallet-example-layered@main
+forklift plt clone github.com/forklift-run/pallet-example-layered@main
 ```
 
 Then you can apply the cloned pallet on your computer using the following sequence of `forklift`
@@ -43,12 +43,15 @@ If your user is in the `docker` group (so that you don't need to use `sudo` when
 commands), then you can just run a single command instead of the two commands listed above:
 
 ```
-forklift plt switch github.com/ethanjli/pallet-example-layered@main
+forklift plt switch github.com/forklift-run/pallet-example-layered@main
 ```
 
 This pallet will bring up a web server at port 80.
 - If you open <http://localhost/hello> in your web browser after deploying the pallet, you should
-  see an NGINX page which prints some basic information such as the current date.
+  see a very minimal page with an ASCII-art whale, which is not the NGINX hello-world page provided
+  by github.com/forklift-run/pallet-example-minimal. This is because this pallet overrides the
+  Docker Compose file for the `hello` feature flag in the `simple-demo` package to deploy a
+  different container.
 - If you open <http://localhost/whoami>, you should see a blank page - this is because this pallet
   overrides the configuration from github.com/forklift-run/pallet-example-minimal to remove the
   `/whoami` route.
