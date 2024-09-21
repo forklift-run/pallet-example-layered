@@ -53,8 +53,8 @@ This pallet will bring up a web server at port 80.
   Docker Compose file for the `hello` feature flag in the `simple-demo` package to deploy a
   different container.
 - If you open <http://localhost/whoami>, you should see a blank page - this is because this pallet
-  overrides the configuration from github.com/forklift-run/pallet-example-minimal to remove the
-  `/whoami` route.
+  overrides the `simple-demo` package deployment configuration from
+  github.com/forklift-run/pallet-example-minimal to remove the `/whoami` route.
 - If you open <http://localhost/admin/prometheus>, you should see a basic Prometheus query console -
   this is because this pallet imports the package deployment for Prometheus from
   github.com/PlanktoScope/pallet-standard.
