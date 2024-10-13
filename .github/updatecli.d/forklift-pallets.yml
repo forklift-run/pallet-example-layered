@@ -33,11 +33,9 @@ targets:
       environments:
         - name: PATH
         - name: HOME # needed for Forklift to determine its default workspace path
-      # FIXME: parameterize the pallet path and version query
-      command: forklift dev pallet require-pallet github.com/PlanktoScope/pallet-standard@edge
+      command: forklift dev pallet require-pallet {{ .path }}@{{ .version-query }}
       changedif:
         kind: file/checksum
         spec:
           files:
-            # FIXME: parameterize the pallet path
-            - requirements/pallets/github.com/PlanktoScope/pallet-standard/forklift-version-lock.yml
+            - requirements/pallets/{{ .path }}/forklift-version-lock.yml

@@ -41,11 +41,11 @@ jobs:
           version: ${{ env.FORKLIFT_VERSION }}
 
       - name: Dry-run updates
-        run: "updatecli diff --config ${{ env.UPDATECLI_CONFIG }}"
+        run: "updatecli diff --config ${{ env.UPDATECLI_CONFIG }} --values .github/updatecli-values/forklift-pallets"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Apply updates
-        run: "updatecli apply --config ${{ env.UPDATECLI_CONFIG }}"
+        run: "updatecli apply --config ${{ env.UPDATECLI_CONFIG }} --values .github/updatecli-values/forklift-pallets"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
