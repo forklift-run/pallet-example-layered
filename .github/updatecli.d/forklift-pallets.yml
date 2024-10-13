@@ -32,8 +32,8 @@ targets:
     spec:
       environments:
         - name: PATH
+        - name: HOME # needed for Forklift to determine its default workspace path
       command: |
-        forklift dev pallet cache-plt &&
         forklift dev pallet require-pallet github.com/PlanktoScope/pallet-standard@beta
       changedif:
         kind: file/checksum
