@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        forklift-version: [0.8.0-alpha.1]
+        forklift-version: [0.8.0-alpha.2]
     runs-on: ubuntu-latest
     defaults:
       run:
