@@ -6,8 +6,8 @@ scms:
     spec:
       owner: '{{ requiredEnv "REPO_OWNER" }}'
       repository: '{{ requiredEnv "REPO_NAME" }}'
-      branch: main
       username: '{{ requiredEnv "GITHUB_ACTOR" }}'
+      branch: feature/auto-update-reqs # FIXME: change this to the main branch
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
       email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
