@@ -33,7 +33,7 @@ targets:
       environments:
         - name: PATH
         - name: HOME # needed for Forklift to determine its default workspace path
-      command: forklift dev pallet require-pallet {{ .path }}@{{ .version-query }}
+      command: forklift dev pallet require-pallet {{ .path }}@{{ .version_query }}
       changedif:
         kind: file/checksum
         spec:
