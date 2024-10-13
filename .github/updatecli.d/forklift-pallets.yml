@@ -32,7 +32,9 @@ targets:
     spec:
       environments:
         - name: PATH
-      command: forklift dev pallet require-pallet github.com/PlanktoScope/pallet-standard@beta
+      command: |
+        pwd; 
+        forklift dev pallet require-pallet github.com/PlanktoScope/pallet-standard@beta
       changedif:
         kind: file/checksum
         spec:
