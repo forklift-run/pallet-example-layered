@@ -7,7 +7,7 @@ scms:
       owner: '{{ requiredEnv "REPO_OWNER" }}'
       repository: '{{ requiredEnv "REPO_NAME" }}'
       username: '{{ requiredEnv "GITHUB_ACTOR" }}'
-      branch: feature/auto-update-reqs # FIXME: change this to the main branch
+      branch: main
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
       email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
@@ -33,9 +33,11 @@ targets:
       environments:
         - name: PATH
         - name: HOME # needed for Forklift to determine its default workspace path
+      # FIXME: parameterize the pallet path and version query
       command: forklift dev pallet require-pallet github.com/PlanktoScope/pallet-standard@edge
       changedif:
         kind: file/checksum
         spec:
           files:
+            # FIXME: parameterize the pallet path
             - requirements/pallets/github.com/PlanktoScope/pallet-standard/forklift-version-lock.yml
