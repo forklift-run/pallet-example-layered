@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - edge
+  pull_request: # TODO: delete this line after testing is done
   workflow_dispatch:
   schedule:
     - cron: '0 16 * * *'  # 16:00 UTC every day
