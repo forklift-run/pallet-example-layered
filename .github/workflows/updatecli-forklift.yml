@@ -1,5 +1,5 @@
 ---
-name: updatecli-compose
+name: updatecli-forklift
 
 on:
   push:
