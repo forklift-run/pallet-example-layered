@@ -33,7 +33,7 @@ targets:
       environments:
         - name: PATH
       command: |
-        pwd >&2; 
+        forklift dev pallet cache-plt &&
         forklift dev pallet require-pallet github.com/PlanktoScope/pallet-standard@beta
       changedif:
         kind: file/checksum
