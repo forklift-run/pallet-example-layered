@@ -1,0 +1,43 @@
+name: PR-update required Forklift pallets
+
+scms:
+  pallet:
+    kind: github
+    spec:
+      owner: '{{ requiredEnv "REPO_OWNER" }}'
+      repository: '{{ requiredEnv "REPO_NAME" }}'
+      username: '{{ requiredEnv "GITHUB_ACTOR" }}'
+      branch: main
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
+      email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
+      commitusingapi: true # this allows commits to be signed
+
+actions:
+  pull-request:
+    scmid: pallet
+    kind: github/pullrequest
+    spec:
+      title: "build(compose): bump required Forklift pallets"
+      labels:
+        - dependencies
+      mergemethod: squash
+
+targets:
+  pallet:
+    name: Update required pallets
+    kind: shell
+    disablesourceinput: true
+    scmid: pallet
+    spec:
+      environments:
+        - name: PATH
+        - name: HOME # needed for Forklift to determine its default workspace path
+      # FIXME: parameterize the pallet path and version query
+      command: forklift dev pallet require-pallet github.com/PlanktoScope/pallet-standard@edge
+      changedif:
+        kind: file/checksum
+        spec:
+          files:
+            # FIXME: parameterize the pallet path
+            - requirements/pallets/github.com/PlanktoScope/pallet-standard/forklift-version-lock.yml

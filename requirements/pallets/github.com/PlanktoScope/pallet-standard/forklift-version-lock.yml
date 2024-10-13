@@ -1,4 +1,4 @@
-type: version
+type: pseudoversion
 tag: v2024.0.0-beta.2
-timestamp: "20240919055824"
-commit: abba80631ed76ba6a12a2dcdb5db56c901e45bba
+timestamp: "20241002231327"
+commit: ce34be09e240dba7947dbc99d455c9b4d0159813

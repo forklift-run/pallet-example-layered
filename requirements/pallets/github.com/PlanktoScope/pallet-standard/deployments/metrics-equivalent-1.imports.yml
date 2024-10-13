@@ -1,8 +1,13 @@
 modifiers:
+  - target: /packages/core/apps
+    only-matching-any:
+      - grafana
+      - node-exporter
   - source: /deployments/apps
     target: /deployments
     only-matching-any:
       - grafana.deploy.yml
       - node-exporter.deploy.yml
+  - target: /packages/core/infra/prometheus
   - source: /deployments/infra/prometheus.deploy.yml
     target: /deployments/prometheus.deploy.yml

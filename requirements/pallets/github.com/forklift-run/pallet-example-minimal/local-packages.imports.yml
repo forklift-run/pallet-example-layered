@@ -1,2 +1,5 @@
 modifiers:
   - target: /packages
+  - type: remove
+    only-matching-any:
+      - /packages/caddy-ingress

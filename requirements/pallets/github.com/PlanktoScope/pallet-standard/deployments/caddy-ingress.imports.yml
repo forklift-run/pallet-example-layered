@@ -1,3 +1,4 @@
 modifiers:
+  - target: /packages/core/infra/caddy-ingress
   - source: /deployments/infra/caddy-ingress.deploy.yml
     target: /deployments/caddy-ingress.deploy.yml
