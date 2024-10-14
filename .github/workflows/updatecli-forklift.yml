@@ -25,7 +25,7 @@ permissions:
 jobs:
   forklift-pallets:
     env:
-      UPDATECLI_CONFIG: .github/updatecli.d/forklift-pallets.yml
+      UPDATECLI_COMPOSE: .github/forklift.updatecli-compose.yml
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -42,11 +42,11 @@ jobs:
           version: ${{ env.FORKLIFT_VERSION }}
 
       - name: Dry-run updates
-        run: "updatecli diff --config ${{ env.UPDATECLI_CONFIG }} --values .github/updatecli-values/pallet-standard.pallet-upgrades.yml --values .github/updatecli-values/pallet-example-minimal.pallet-upgrades.yml --values .github/updatecli-values/pallet-example-overlays.pallet-upgrades.yml"
+        run: "updatecli compose diff --file ${{ env.UPDATECLI_COMPOSE }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Apply updates
-        run: "updatecli apply --config ${{ env.UPDATECLI_CONFIG }} --values .github/updatecli-values/pallet-standard.pallet-upgrades.yml --values .github/updatecli-values/pallet-example-minimal.pallet-upgrades.yml --values .github/updatecli-values/pallet-example-overlays.pallet-upgrades.yml"
+        run: "updatecli compose apply --file ${{ env.UPDATECLI_COMPOSE }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
