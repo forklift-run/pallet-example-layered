@@ -24,7 +24,7 @@ actions:
       mergemethod: squash
 
 sources:
-  pallet-current:
+  current:
     name: Current version of required pallet
     kind: shell
     spec:
@@ -39,14 +39,16 @@ sources:
 
 targets:
   pallet:
-    name: 'deps(forklift): bump "{{ .path }}" pallet'
+    # FIXME: template the current and resolved versions into the name
+    name: 'require-pallet "{{ .path }}"@{{ index . "version-query" }}: {{ source "current" }}'
     kind: shell
     disablesourceinput: true
     scmid: pallet
     dependson:
-      - source#pallet-current
+      - source#current
     spec:
       environments:
         - name: PATH # needed to find the forklift binary
         - name: HOME # needed for Forklift to determine its default workspace path
+      # FIXME: specify the explicit resolved version instead of the version query
       command: '{{ requiredEnv "CWD" }}/.github/forklift-require.sh pallet {{ .path }} {{ index . "version-query" }}'
