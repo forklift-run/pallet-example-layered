@@ -1,8 +1,8 @@
 root=$(dirname "$(realpath "$BASH_SOURCE")")
 repo_root="$1"       # this should be an absolute path
 policy_template="$2" # this should be relative to repo_root
-values_dir="$2"      # this should be relative to repo_root
-compose_file="$3"    # this may be an absolute path outside repo_root or a relative path to cwd
+values_dir="$3"      # this should be relative to repo_root
+compose_file="$4"    # this may be an absolute path outside repo_root or a relative path to cwd
 
 echo '' >"$compose_file" # note: to set root-level values, instead copy a base file to $compose_file
 
