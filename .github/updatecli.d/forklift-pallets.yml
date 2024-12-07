@@ -40,7 +40,7 @@ sources:
 targets:
   pallet:
     # FIXME: template the current and resolved versions into the name
-    name: '{{ .path }}: {{ source "current" }} -> ???'
+    name: '@{{ source "current" }} -> @???'
     kind: shell
     disablesourceinput: true
     scmid: pallet
