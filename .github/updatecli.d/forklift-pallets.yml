@@ -1,4 +1,4 @@
-name: 'deps(forklift): bump "{{ .path }}" pallet'
+name: 'req-plt {{ .path }}@{{ index . "version-query" }}'
 
 scms:
   pallet:
@@ -40,7 +40,7 @@ sources:
 targets:
   pallet:
     # FIXME: template the current and resolved versions into the name
-    name: 'require-pallet "{{ .path }}"@{{ index . "version-query" }}: {{ source "current" }}'
+    name: '{{ .path }}: {{ source "current" }} -> ???'
     kind: shell
     disablesourceinput: true
     scmid: pallet
