@@ -1,16 +1,17 @@
 root=$(dirname "$(realpath "$BASH_SOURCE")")
-template="$root/forklift.updatecli-compose.yml.yqtemplate"
-values_dir="$1" # this should be an absolute path
-compose_file="$2"
+repo_root="$1"       # this should be an absolute path
+policy_template="$2" # this should be relative to repo_root
+values_dir="$2"      # this should be relative to repo_root
+compose_file="$3"    # this may be an absolute path outside repo_root or a relative path to cwd
 
 echo '' >"$compose_file" # note: to set root-level values, instead copy a base file to $compose_file
 
-for file in "$values_dir"/*.yml; do
+for file in "$repo_root/$values_dir"/*.yml; do
   echo "Auto-generated policy for $file:"
   pallet="$(yq '.path' "$file")"
   policy="$(
-    pallet="$pallet" values_file="$file" \
-      yq '(.. | select(tag == "!!str")) |= envsubst' "$template" |
+    pallet="$pallet" values_file="$file" repo_root="$repo_root" \
+      yq '(.. | select(tag == "!!str")) |= envsubst' "$repo_root/$policy_template" |
       yq '. as $root | {} | .policies = [$root]'
   )"
   echo "$policy"

@@ -42,7 +42,12 @@ jobs:
           version: ${{ env.FORKLIFT_VERSION }}
 
       - name: Generate updatecli compose file
-        run: .github/generate-forklift-updatecli-compose.sh "$(pwd)/.github/values.d" "${{ env.UPDATECLI_COMPOSE }}"
+        run: |
+          .github/generate-forklift-updatecli-compose.sh \
+            "$(pwd)" \
+            ".github/forklift.updatecli-compose.yml.yqtemplate" \
+            ".github/values.d" \
+            "${{ env.UPDATECLI_COMPOSE }}"
 
       - name: Dry-run updates
         run: "updatecli compose diff --file ${{ env.UPDATECLI_COMPOSE }}"
