@@ -29,7 +29,7 @@ for values_template in "$requirements_base"/**/"$values_template_name"; do
   path="$req_path" yq '(.. | select(tag == "!!str")) |= envsubst' "$values_template" >"$values_interpolated"
 
   echo "Updatecli policy values for $type_singular $req_path at $values_interpolated:"
-  cath "$values_interpolated
+  cat "$values_interpolated
 
   policy="$(
     repo_root="$repo_root" req_path="$req_path" forklift_upgrade_file="$values_interpolated" \
