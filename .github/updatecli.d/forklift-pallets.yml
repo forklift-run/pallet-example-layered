@@ -1,4 +1,4 @@
-name: PR-update required Forklift pallets
+name: PR-update required Forklift pallet {{ .path }}
 
 scms:
   pallet:
@@ -35,6 +35,7 @@ sources:
 
 # FIXME: add a shell condition check to ensure that the version query is valid and resolved to a
 # git repo which actually is a pallet, maybe by calling `forklift inspector resolve-pallet`
+# FIXME: add a condition check for whether the queried version is different from the current version
 
 targets:
   pallet:
