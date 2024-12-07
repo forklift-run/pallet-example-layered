@@ -24,9 +24,7 @@ fi
 forklift dev pallet "require-$type_singular" "$path@$version_query" >&2
 version="$(forklift dev pallet "show-$type_singular-version" "$path")"
 if [ "$prev_version" != "$version" ]; then
-  echo "$prev_version -> $version"
-else
-  echo "$prev_version"
+  echo "$version"
 fi
 
 if [ "$DRY_RUN" = "true" ]; then
