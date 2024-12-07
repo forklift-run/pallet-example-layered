@@ -1,4 +1,4 @@
-name: PR-update required Forklift pallet {{ .path }}
+name: 'deps(forklift): bump "{{ .path }}" pallet'
 
 scms:
   pallet:
@@ -18,7 +18,7 @@ actions:
     scmid: pallet
     kind: github/pullrequest
     spec:
-      title: "build(compose): bump required Forklift pallets"
+      title: "build(forklift): bump required Forklift pallets"
       labels:
         - dependencies
       mergemethod: squash
@@ -39,7 +39,7 @@ sources:
 
 targets:
   pallet:
-    name: Update required pallet
+    name: 'deps(forklift): bump "{{ .path }}" pallet'
     kind: shell
     disablesourceinput: true
     scmid: pallet
