@@ -1,5 +1,0 @@
-name: Upgrade pallet ${pallet}
-config:
-  - ${repo_root}/.github/updatecli.d/forklift-pallets.yml
-values:
-  - ${values_file}

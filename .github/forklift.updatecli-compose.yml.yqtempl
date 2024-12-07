@@ -1,0 +1,12 @@
+# Allowed variables for interpolation:
+# repo_root: the filesystem path of the git repository root
+# pallet: the path of the pallet to upgrade
+# forklift_upgrade_file: the filesystem path of the `updatecli.forklift-upgrades.yml` file for the pallet
+# type_plural: either `pallets` or `repositories`
+# type_singular: either `pallet` or `repository`
+
+name: Upgrade ${type_singular} ${pallet}
+config:
+  - ${repo_root}/.github/updatecli.d/forklift-${type_plural}.yml
+values:
+  - ${forklift_upgrade_file}
