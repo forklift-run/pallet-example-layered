@@ -14,7 +14,7 @@ case "$type_singular" in
 esac
 
 prev_version="$(forklift dev pallet "show-$type_singular-version" "$path")"
-if [ "$DRY_RUN" = "true"]; then
+if [ "$DRY_RUN" = "true" ]; then
   prev_version_lock="$(mktemp -t forklift-version-lock-XXXXX.yml)"
   cp "requirements/$type_plural/$path/forklift-version-lock.yml" "$prev_version_lock"
 fi
