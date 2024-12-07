@@ -54,7 +54,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: |
           updatecli compose diff --file ${{ env.UPDATECLI_COMPOSE }} \
-            || ls /tmp/updatecli/bin/*.sh
+            || (cat /tmp/updatecli/bin/*.sh && exit 1)
 
       - name: Apply updates
         env:
