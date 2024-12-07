@@ -45,7 +45,7 @@ jobs:
         run: |
           .github/generate-forklift-updatecli-compose.sh \
             "$(pwd)" \
-            ".github/forklift-pallet.updatecli-compose.yml.yqtempl" \
+            ".github/forklift.updatecli-compose.yml.yqtempl" \
             "pallets" \
             "${{ env.UPDATECLI_COMPOSE }}"
 
