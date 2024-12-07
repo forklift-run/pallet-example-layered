@@ -21,18 +21,19 @@ case "$type_plural" in
 esac
 
 requirements_base="$repo_root/requirements/$type_plural"
-for file in "$requirements_base"/**/updatecli.forklift-upgrades.yml; do
-  subpath="${file#"$requirements_base/"}"
-  pallet="${subpath%"/updatecli.forklift-upgrades.yml"}"
+values_template_name="updatecli.pallet-upgrades.yqtempl"
+for values_template in "$requirements_base"/**/"$values_template_name"; do
+  subpath="${values_template#"$requirements_base/"}"
+  pallet="${subpath%"/$values_template_name"}"
+  values_interpolated="$(mktemp -t "updatecli-values-forklift-$type_singular-XXXXX.yml")"
+  pallet="$pallet" \
+    yq '(.. | select(tag == "!!str")) |= envsubst' "$values_template" >"$values_interpolated"
   policy="$(
-    repo_root="$repo_root" pallet="$pallet" forklift_upgrade_file="$file" \
+    repo_root="$repo_root" pallet="$pallet" forklift_upgrade_file="$values_interpolated" \
       type_plural="$type_plural" type_singular="$type_singular" \
       yq '(.. | select(tag == "!!str")) |= envsubst' "$repo_root/$policy_template" |
       yq '. as $root | {} | .policies = [$root]'
   )"
-  #echo "Auto-generated policy for $type_singular $pallet:"
-  #echo "$policy"
-  #echo
   echo "$policy" |
     yq eval-all --inplace '.policies as $item ireduce ({}; .policies += $item )' \
       "$compose_file" -
