@@ -23,12 +23,19 @@ actions:
         - dependencies
       mergemethod: squash
 
+sources:
+  pallet-current:
+    name: Current version of required pallet
+    kind: shell
+    spec:
+      command: 'forklift dev plt show-pallet-version {{ .path }}'
+
 # FIXME: add a shell condition check to ensure that the version query is valid and resolved to a
 # git repo which actually is a pallet, maybe by calling `forklift inspector resolve-pallet`
 
 targets:
   pallet:
-    name: Update required pallets
+    name: Update required pallet
     kind: shell
     disablesourceinput: true
     scmid: pallet
