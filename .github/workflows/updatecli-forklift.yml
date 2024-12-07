@@ -25,7 +25,7 @@ permissions:
 jobs:
   forklift-pallets:
     env:
-      UPDATECLI_COMPOSE: .github/forklift.updatecli-compose.yml
+      UPDATECLI_COMPOSE: /tmp/forklift.updatecli-compose.yml
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -40,6 +40,9 @@ jobs:
         uses: PlanktoScope/setup-forklift@v1
         with:
           version: ${{ env.FORKLIFT_VERSION }}
+
+      - name: Generate updatecli compose file
+        run: .github/generate-forklift-updatecli-compose.sh .github/values.d "${{ env.UPDATECLI_COMPOSE }}"
 
       - name: Dry-run updates
         run: "updatecli compose diff --file ${{ env.UPDATECLI_COMPOSE }}"

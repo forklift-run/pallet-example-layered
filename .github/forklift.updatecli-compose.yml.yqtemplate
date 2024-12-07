@@ -1,0 +1,5 @@
+name: Upgrade ${pallet}
+config:
+  - updatecli.d/forklift-pallets.yml
+values:
+  - ${values_file}
