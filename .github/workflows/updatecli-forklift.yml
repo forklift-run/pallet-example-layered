@@ -50,11 +50,14 @@ jobs:
             "${{ env.UPDATECLI_COMPOSE }}"
 
       - name: Dry-run updates
-        run: "updatecli compose diff --file ${{ env.UPDATECLI_COMPOSE }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          updatecli compose diff --file ${{ env.UPDATECLI_COMPOSE }} \
+            || ls /tmp/updatecli/bin/*.sh
 
       - name: Apply updates
-        run: "updatecli compose apply --file ${{ env.UPDATECLI_COMPOSE }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          updatecli compose apply --file ${{ env.UPDATECLI_COMPOSE }}
