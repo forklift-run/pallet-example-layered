@@ -42,6 +42,8 @@ targets:
     kind: shell
     disablesourceinput: true
     scmid: pallet
+    dependson:
+      - source#pallet-current
     spec:
       environments:
         - name: PATH # needed to find the forklift binary
