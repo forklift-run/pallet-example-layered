@@ -36,4 +36,4 @@ targets:
       environments:
         - name: PATH
         - name: HOME # needed for Forklift to determine its default workspace path
-      command: .github/forklift-require.sh pallet {{ .path }} {{ index . "version-query" }}
+      command: '{{ requiredEnv "CWD" }}/.github/forklift-require.sh pallet {{ .path }} {{ index . "version-query" }}'
