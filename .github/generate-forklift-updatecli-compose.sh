@@ -7,18 +7,18 @@ policy_template="$2" # this should be relative to repo_root
 type_plural="$3"     # this should be either `pallets` or `repositories`
 compose_file="$4"    # this may be an absolute path outside repo_root or a relative path to cwd
 
-echo '' >"$compose_file" # note: to set root-level values, instead copy a base file to $compose_file
-
 case "$type_plural" in
 "pallets" | "pallet")
   type_plural="pallets"
   type_singular="pallet"
   ;;
-"repositories" | "repository")
+"repositories" | "repository" | "repos" | "repo")
   type_plural="repositories"
   type_singular="repository"
   ;;
 esac
+
+echo '' >"$compose_file" # note: to set root-level values, instead copy a base file to $compose_file
 
 requirements_base="$repo_root/requirements/$type_plural"
 values_template_name="updatecli.pallet-upgrades.yqtempl"

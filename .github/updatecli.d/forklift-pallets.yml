@@ -23,6 +23,9 @@ actions:
         - dependencies
       mergemethod: squash
 
+# FIXME: add a shell condition check to ensure that the version query is valid and resolved to a
+# git repo which actually is a pallet, maybe by calling `forklift inspector resolve-pallet`
+
 targets:
   pallet:
     name: Update required pallets
@@ -33,9 +36,4 @@ targets:
       environments:
         - name: PATH
         - name: HOME # needed for Forklift to determine its default workspace path
-      command: forklift dev pallet require-pallet {{ .path }}@{{ index . "version-query" }}
-      changedif:
-        kind: file/checksum
-        spec:
-          files:
-            - requirements/pallets/{{ .path }}/forklift-version-lock.yml
+      command: .github/forklift-require.sh pallet {{ .path }} {{ index . "version-query" }}
