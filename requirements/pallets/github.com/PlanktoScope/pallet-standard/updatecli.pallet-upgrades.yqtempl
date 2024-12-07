@@ -1,2 +1,2 @@
-pallet: ${pallet}
+pallet: ${path}
 version-query: edge

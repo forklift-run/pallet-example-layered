@@ -24,12 +24,15 @@ requirements_base="$repo_root/requirements/$type_plural"
 values_template_name="updatecli.pallet-upgrades.yqtempl"
 for values_template in "$requirements_base"/**/"$values_template_name"; do
   subpath="${values_template#"$requirements_base/"}"
-  pallet="${subpath%"/$values_template_name"}"
+  req_path="${subpath%"/$values_template_name"}"
   values_interpolated="$(mktemp -t "updatecli-values-forklift-$type_singular-XXXXX.yml")"
-  pallet="$pallet" \
-    yq '(.. | select(tag == "!!str")) |= envsubst' "$values_template" >"$values_interpolated"
+  path="$req_path" yq '(.. | select(tag == "!!str")) |= envsubst' "$values_template" >"$values_interpolated"
+
+  echo "Updatecli policy values for $type_singular $req_path at $values_interpolated:"
+  cath "$values_interpolated
+
   policy="$(
-    repo_root="$repo_root" pallet="$pallet" forklift_upgrade_file="$values_interpolated" \
+    repo_root="$repo_root" req_path="$req_path" forklift_upgrade_file="$values_interpolated" \
       type_plural="$type_plural" type_singular="$type_singular" \
       yq '(.. | select(tag == "!!str")) |= envsubst' "$repo_root/$policy_template" |
       yq '. as $root | {} | .policies = [$root]'
