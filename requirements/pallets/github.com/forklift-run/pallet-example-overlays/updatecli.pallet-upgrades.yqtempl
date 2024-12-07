@@ -1,2 +1,2 @@
-pallet: ${path}
+path: ${path}
 version-query: main
