@@ -41,6 +41,11 @@ jobs:
         with:
           version: ${{ env.FORKLIFT_VERSION }}
 
+      # Note: this is only needed below 0.8.0-alpha.4
+      - name: Cache Forklift pallet requirements
+        run: |
+          forklift dev plt cache-plt
+
       - name: Generate updatecli compose file
         run: |
           .github/generate-forklift-updatecli-compose.sh \
