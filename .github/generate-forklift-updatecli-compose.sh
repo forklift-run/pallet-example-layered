@@ -21,5 +21,6 @@ for file in "$repo_root/$values_dir"/*.yml; do
       "$compose_file" -
 done
 
+echo
 echo "Auto-generated compose file:"
 cat "$compose_file"
