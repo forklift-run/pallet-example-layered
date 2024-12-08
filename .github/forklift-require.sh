@@ -1,6 +1,6 @@
 type_singular="$1" # either `pallet` or `repository`
 path="$2"          # path of a pallet or repo, e.g. `github.com/PlanktoScope/pallet-standard`
-version_query="$3" # version query, e.g. `edge` or `main`
+version_query="$3" # version query, e.g. `edge` or `main`; pseudoversions are not supported (yet)
 
 case "$type_singular" in
 "pallets" | "pallet")
@@ -21,14 +21,10 @@ fi
 
 # Note: updatecli expects that stdout should only contain the version string of the updated version,
 # and it should be empty if the version was not changed.
-forklift dev pallet show
-echo "require-$type_singular" "$path@$version_query"
-forklift dev pallet "require-$type_singular" "$path@$version_query" #>&2
+forklift dev pallet "require-$type_singular" "$path@$version_query" >&2
 version="$(forklift dev pallet "show-$type_singular-version" "$path")"
 if [ "$prev_version" != "$version" ]; then
-  echo "$prev_version -> $version"
-else
-  echo "$prev_version == $version"
+  echo "$version"
 fi
 
 if [ "$DRY_RUN" = "true" ]; then
