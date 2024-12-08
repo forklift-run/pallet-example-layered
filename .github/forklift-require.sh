@@ -21,9 +21,9 @@ fi
 
 # Note: updatecli expects that stdout should only contain the version string of the updated version,
 # and it should be empty if the version was not changed.
-cat "requirements/$type_plural/$path/forklift-version-lock.yml"
+forklift dev pallet show
+echo "require-$type_singular" "$path@$version_query"
 forklift dev pallet "require-$type_singular" "$path@$version_query" #>&2
-cat "requirements/$type_plural/$path/forklift-version-lock.yml"
 version="$(forklift dev pallet "show-$type_singular-version" "$path")"
 if [ "$prev_version" != "$version" ]; then
   echo "$prev_version -> $version"
