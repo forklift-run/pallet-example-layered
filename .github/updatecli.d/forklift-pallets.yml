@@ -32,23 +32,38 @@ sources:
         - name: PATH # needed to find the forklift binary
         - name: HOME # needed for Forklift to determine its default workspace path
       command: forklift dev pallet show-pallet-version {{ .path }}
+  resolved:
+    name: Resolved version of version query on required pallet
+    kind: shell
+    spec:
+      environments:
+        - name: PATH # needed to find the forklift binary
+        - name: HOME # needed for Forklift to determine its default workspace path
+      command: forklift inspector resolve-git-repo {{ .path }}@{{ index . "version-query" }} | tail
 
-# FIXME: add a shell condition check to ensure that the version query is valid and resolved to a
-# git repo which actually is a pallet, maybe by calling `forklift inspector resolve-pallet`
-# FIXME: add a condition check for whether the queried version is different from the current version
+conditions:
+  changed:
+    name: Queried version differs from current version
+    kind: shell
+    disablesourceinput: true
+    dependson:
+      - source#current
+      - source#resolved
+    spec:
+      command: test {{ source "current" }} != {{ source "resolved" }}
 
 targets:
   pallet:
-    # FIXME: template the current and resolved versions into the name
-    name: '@{{ source "current" }} -> @???'
+    name: '@{{ source "current" }} -> @{{ source "resolved" }}'
     kind: shell
     disablesourceinput: true
     scmid: pallet
     dependson:
       - source#current
+      - source#resolved
+      - condition#changed
     spec:
       environments:
         - name: PATH # needed to find the forklift binary
         - name: HOME # needed for Forklift to determine its default workspace path
-      # FIXME: specify the explicit resolved version instead of the version query
-      command: '{{ requiredEnv "CWD" }}/.github/forklift-require.sh pallet {{ .path }} {{ index . "version-query" }}'
+      command: '{{ requiredEnv "CWD" }}/.github/forklift-require.sh pallet {{ .path }} {{ source "resolved" }}'
