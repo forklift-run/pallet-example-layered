@@ -50,7 +50,7 @@ conditions:
       - source#current
       - source#resolved
     spec:
-      command: '[[ "{{ source "resolved" }}" == v* && "{{ source "current" }}" != "{{ source "resolved" }}" ]]'
+      command: test "{{ source "current" }}" != "{{ source "resolved" }}"
 
 targets:
   pallet:
