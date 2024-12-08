@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - edge
+  pull_request: # FIXME: delete this after testing is done!
   workflow_dispatch:
   schedule:
     - cron: '0 16 * * *'  # 16:00 UTC every day
