@@ -43,7 +43,7 @@ sources:
 
 conditions:
   changed:
-    name: Queried version differs from current version
+    name: Version change available
     kind: shell
     disablesourceinput: true
     dependson:
