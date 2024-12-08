@@ -33,7 +33,7 @@ sources:
         - name: HOME # needed for Forklift to determine its default workspace path
       command: forklift dev pallet show-pallet-version {{ .path }}
   resolved:
-    name: Resolved version of version query on required pallet
+    name: Resolved version query
     kind: shell
     spec:
       environments:
