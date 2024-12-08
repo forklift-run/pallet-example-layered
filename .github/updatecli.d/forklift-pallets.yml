@@ -55,7 +55,7 @@ conditions:
 
 targets:
   pallet:
-    name: '@{{ source "current" }} -> @{{ source "resolved" }}'
+    name: '{{ source "current" }} -> {{ source "resolved" }}'
     kind: shell
     disablesourceinput: true
     scmid: pallet
