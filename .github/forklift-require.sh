@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -S eu
+#!/usr/bin/env -S bash -eu
 
 type_singular="$1" # either `pallet` or `repository`
 path="$2"          # path of a pallet or repo, e.g. `github.com/PlanktoScope/pallet-standard`
