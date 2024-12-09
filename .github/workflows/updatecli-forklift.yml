@@ -60,9 +60,8 @@ jobs:
             "${{ matrix.type }}" \
             "$UPDATECLI_COMPOSE"
 
-          yq '.policies | length' "$UPDATECLI_COMPOSE"
           num_policies="$(yq '.policies | length' "$UPDATECLI_COMPOSE")"
-          echo "$num_policies were generated."
+          echo "$num_policies policies were generated."
           if [[ "$num_policies" > 0 ]]; then
             echo "has-policies=true" >> $GITHUB_OUTPUT
           fi
