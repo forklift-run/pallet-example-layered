@@ -60,6 +60,7 @@ jobs:
             "${{ matrix.type }}" \
             "$UPDATECLI_COMPOSE"
 
+          yq '.policies | length' "$UPDATECLI_COMPOSE"
           num_policies="$(yq '.policies | length' "$UPDATECLI_COMPOSE")"
           echo "$num_policies were generated."
           if [[ "$num_policies" > 0 ]]; then
