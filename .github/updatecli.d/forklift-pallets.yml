@@ -55,7 +55,7 @@ conditions:
 
 targets:
   pallet:
-    name: '{{ source "current" }} -> {{ source "resolved" }}'
+    name: 'bump {{ .path }} from {{ source "current" }} to {{ source "resolved" }}'
     kind: shell
     disablesourceinput: true
     scmid: pallet
