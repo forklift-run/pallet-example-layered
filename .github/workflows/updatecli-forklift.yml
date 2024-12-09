@@ -22,10 +22,13 @@ permissions:
   pull-requests: write
 
 jobs:
-  forklift-pallets:
+  forklift-requirements:
     env:
-      UPDATECLI_COMPOSE: /tmp/forklift.updatecli-compose.yml
+      UPDATECLI_COMPOSE: /tmp/forklift-pallets.updatecli-compose.yml
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        type: [pallets, repos]
     defaults:
       run:
         shell: bash
@@ -40,17 +43,21 @@ jobs:
         with:
           version: ${{ env.FORKLIFT_VERSION }}
 
-      - name: Cache Forklift pallet requirements
+      - name: Cache Forklift requirements
         run: |
           forklift dev plt cache-plt
+          forklift dev plt cache-repo
 
       - name: Generate updatecli compose file
         run: |
+          UPDATECLI_COMPOSE="$(mktemp -t 'updatecli-compose-XXXXX.yml')"
+          echo "UPDATECLI_COMPOSE=$UPDATECLI_COMPOSE" >> $GITHUB_ENV
+
           .github/generate-forklift-updatecli-compose.sh \
             "$(pwd)" \
             ".github/forklift.updatecli-compose.yqtempl" \
-            "pallets" \
-            "${{ env.UPDATECLI_COMPOSE }}"
+            "${{ matrix.type }}" \
+            "$UPDATECLI_COMPOSE"
 
       - name: Dry-run updates
         run: CWD="$(pwd)" updatecli compose diff --file "${{ env.UPDATECLI_COMPOSE }}"
