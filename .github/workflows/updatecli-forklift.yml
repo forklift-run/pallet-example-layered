@@ -60,7 +60,7 @@ jobs:
             "${{ matrix.type }}" \
             "$UPDATECLI_COMPOSE"
 
-          if [ -s "$UPDATECLI_COMPOSE" ]; then
+          if [ yq '.policies | length' "$UPDATECLI_COMPOSE" > 0 ]; then
             echo "has-policies=true" >> $GITHUB_OUTPUT
           fi
 
