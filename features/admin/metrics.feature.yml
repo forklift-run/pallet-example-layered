@@ -4,5 +4,7 @@ modifiers:
     source: base/http
   - type: add-feature
     source: base/metrics
+  - target: /packages/core/apps/node-exporter
   - target: /deployments/node-exporter.deploy.yml
+  - target: /packages/core/apps/grafana
   - target: /deployments/grafana.deploy.yml

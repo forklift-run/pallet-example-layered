@@ -1,4 +1,4 @@
 description: Support for integrating HTTP APIs and browser apps in a single path hierarchy
 modifiers:
-  - target: /packages/caddy-ingress
+  - target: /packages/core/infra/caddy-ingress
   - target: /deployments/caddy-ingress.deploy.yml
