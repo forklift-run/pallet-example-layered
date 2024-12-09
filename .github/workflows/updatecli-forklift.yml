@@ -49,6 +49,7 @@ jobs:
           forklift dev plt cache-repo
 
       - name: Generate updatecli compose file
+        id: generate-compose
         run: |
           UPDATECLI_COMPOSE="$(mktemp -t 'updatecli-compose-XXXXX.yml')"
           echo "UPDATECLI_COMPOSE=$UPDATECLI_COMPOSE" >> $GITHUB_ENV
@@ -59,12 +60,18 @@ jobs:
             "${{ matrix.type }}" \
             "$UPDATECLI_COMPOSE"
 
+          if [ -s "$UPDATECLI_COMPOSE ]; then
+            echo "has-policies=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Dry-run updates
+        if: ${{ steps.generate-compose.outputs.has-policies }}
         run: CWD="$(pwd)" updatecli compose diff --file "${{ env.UPDATECLI_COMPOSE }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Apply updates
+        if: ${{ steps.generate-compose.outputs.has-policies }}
         run: CWD="$(pwd)" updatecli compose apply --file "${{ env.UPDATECLI_COMPOSE }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

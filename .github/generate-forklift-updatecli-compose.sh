@@ -19,9 +19,7 @@ case "$type_plural" in
   ;;
 esac
 
-# Note: to set root-level values, instead copy a base file to $compose_file. We make an empty
-# policies array to suppress updatecli's autodiscovery functionality.
-echo 'policies: []' >"$compose_file"
+echo '' >"$compose_file" # note: to set root-level values, instead copy a base file to $compose_file
 
 requirements_base="$repo_root/requirements/$type_plural"
 values_template_name="updatecli.pallet-upgrades.yqtempl"
