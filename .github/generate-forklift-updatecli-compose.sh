@@ -22,7 +22,7 @@ esac
 echo '' >"$compose_file" # note: to set root-level values, instead copy a base file to $compose_file
 
 requirements_base="$repo_root/requirements/$type_plural"
-values_template_name="updatecli.pallet-upgrades.yqtempl"
+values_template_name="updatecli.$type_singular-upgrades.yqtempl"
 for values_template in "$requirements_base"/**/"$values_template_name"; do
   subpath="${values_template#"$requirements_base/"}"
   req_path="${subpath%"/$values_template_name"}"

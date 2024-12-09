@@ -39,7 +39,7 @@ sources:
       environments:
         - name: PATH # needed to find the forklift binary
         - name: HOME # needed for Forklift to determine its default workspace path
-      command: '{{ requiredEnv "CWD" }}/.github/forklift-resolve.sh {{ .path }} {{ index . "version-query" }}'
+      command: forklift inspector resolve-git-repo {{ .path }}@{{ index . "version-query" }}
 
 conditions:
   # TODO: add a condition check for whether the resolved version string appears to be a valid version string (maybe add a forklift inspector subcommand for this)
