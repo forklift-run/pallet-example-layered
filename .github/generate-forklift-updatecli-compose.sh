@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 shopt -s globstar
+shopt -s nullglob
 
 root=$(dirname "$(realpath "$BASH_SOURCE")")
 repo_root="$1"       # this should be an absolute path to the root of the Git repository to update
